@@ -1,182 +1,219 @@
-# THE RICK AND MORTY API PROJECT
+## Description:
 
-![screenshot_homepage.png ](./src/images/screenshot_homepage.png)
+This website gathers information from an API. The information provided is every character and episode from the TV show ‘Rick & Morty’. This was done using React and CSS. It is my second project for the General Assembly Software Immersive Course and my first time working with someone else on coding.
 
-## Project Description
+## Deployment link
 
-Rick and Morty is an animated science-fiction sitcom created by Justin Roiland and Dan Harmon, it was first aired in 2013 and has a total of 6 seasons as of 2022.
-This app consumes a public Rick And Morty API which contains Characters, Episodes, Locations and more. The app was built using React and contains 4 pages. Home, Characters List/Characters Bio, and Episodes List.
-
-## Deployment Link
-
-[https://rick-morty-api-project.netlify.app/](https://rick-morty-api-project.netlify.app/ 'The Rick & Morty API Project')
-
-### API Link
-
-[ https://rickandmortyapi.com/api/](https://rickandmortyapi.com/api/ 'Rick and Morty API Link')
+https://rick-and-morty-api-bababoi.netlify.app/list
 
 ## Getting Started/Code Installation
 
-Once the project is cloned onto your machine, follow these steps:
+1. Download the code
+2. Navigate to the code in the console
+3. Type ‘NPM install’
+4. Type ‘NPM start’
+5. The website should appear on the browser.
 
-1. In the Project terminal, run the command `npm i react axios`.
-2. Then run the command `npm start`.
-3. Your default brower will open a new page and load the app.
+## Timeframe & Working Team (Solo/Pair/Group)
 
-### Dependencies
+The project was done in a pair. Joel Sahiti and Alex Thomas.
+It was done in 2 and a half days.
 
-- Axios packages
-- CORS packages
-- Bulma library
+## Technologies used:
 
-## Timeframe
+- Visual Studio Code (Code Editor I used)
+- HTML
+- JavaScript
+- CSS
+- React JS
+- SCSS
 
-This was a pair programing hackathlon with one of my fellow classmate Joel Sahiti using GitHub/Zoom/Slack and Visual Studio Code, to be completed in 48hrs.
+## Brief:
 
-## Technologies Used
+- To build an app that must fulfill the below requirement:
+- Consume a public API – this could be anything but it must make sense for your project.
+- Have several components - At least one classical and one functional.
+- The app can have a router - with several "pages", this is up to your discretion and if it makes sense for your project.
+- I nclude wireframes - that you designed before building the app.
+- Be deployed online and accessible to the public.
 
-- Excalidraw (wireframe)
-- HTML/SASS/JavaScript
-- React
-- Visual Studio Code
-- Postman
-- Git/GitHub
-- Axios packages
-- CORS packages
-- Bulma (SASS library)
-- Google Fonts
-- Zoom
-- Slack
-- Netlify (deployment)
+## Planning:
 
-## Brief
+We both made rough sketches of what the page would look like and then took the best ideas from each one.
 
-### Requirements
+We were able to do some pseudo code on the features that we thought would be the most useful. For example, the ability to click on a card and see the status of specific characters.
 
-- **Consume a public API** – this could be anything but it must make sense for your project.
-- **Have several components** - At least one classical and one functional.
-- **The app can have a router** - with several "pages".
-- **Include wireframes** - designed before building the app.
-- **Be deployed online** and accessible to the public.
+The most important thing to us was deciding on who was coding what part. We decided to make a google doc and split it in half, then write what I will be doing on the left and what Alex will be doing on the right. I would be working on the home page, navbar, connecting the page to the API and make it possible to change pages (we did not know the ability to change pages was needed until later in the project)
 
-## Planning
+Every time we would need to merge an update to a project, we would always communicate what we changed and when we changed it before doing so over slack or in a zoom call.
 
-![screenshot_wireframe.png](./src/images/screenshot_wireframe.png)
+Made a wire frame
+Wrote pseudo code
+Began coding in the order shown by the wireframe
+Bug fixes
 
-- Used Excalidraw to build a wireframe and design the basic layout of the app.
-  - The wireframe shows 4 pages: Homepage, Characters List, Characters Card, Episodes List.
-  - A navigation bar is used to navigate between each main pages.
-  - On the Characters List page, if the user clicks on a Character's Card, he is directed.
-    to a new page which contains the Character's full bio card.
-- Researched an API with enough content to create a minimum of 3 pages.
+![image](https://i.imgur.com/HJ67D88.png)
 
 ## Build/Code Process
 
-### Day One
-
-- Installation
-
-  - Created a new repository on GitHub and cloned it locally. (Alex/Joel)
-  - Initial setup ot the React application using MacOs terminal. (Alex/Joel)
-  - Installed Axios Packages and Bulma library. (Alex/Joel)
-
-- Excalidraw
-  - Created a wireframe with each pages/components required for the app. (Alex/Joel)
-  - API research (Alex/Joel)
-
-### Characters List:
-
-![screenshot_index.png](./src/images/screenshot_index.png)
-
-- Created the `api.js` with the code (below) to fetch the required data based on our wireframe. (Alex/Joel)
+The first thing Alex did was create the ‘app.js’, ‘main.css’ and ‘index.html’ files.
+I wrote code for the navbar by installing react-router-dom and imported the ‘Link’ attribute to take the user to a specific URL when clicked.
 
 ```javascript
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const BASE_URL = 'https://rickandmortyapi.com/api/character';
-const EPISODE_URL = 'https://rickandmortyapi.com/api/episode';
+const Navbar = () => {
+  return (
+    <nav className="navbar">
+      <div className="navbar-container">
+        <div className="navbar-brand">
+          <Link to="/" className="navbar-item">
+            Home
+          </Link>
+          <Link to="/list" className="navbar-item">
+            Characters List
+          </Link>
+          <Link to="/episodes" className="navbar-item">
+            Episodes List
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-export const getAllEpisodes = (pageNumber) =>
-  axios.get(`${EPISODE_URL}/?page=${pageNumber}`);
-
-export const getAllCharacters = (pageNumber) =>
-  axios.get(`${BASE_URL}/?page=${pageNumber}`);
-
-export const getCharacterBio = (characterId) =>
-  axios.get(`${BASE_URL}/${characterId}`);
+export default Navbar;
 ```
 
-- Created the NavBar (Joel)
-- Created Home and Characters List buttons on the NavBar. (Joel)
-- Created Characters List page and fetched data from API. (Alex)
-- As our API was only showing 20 characters per page, we created pagination to
-  show all characters. (Joel)
-
-### Day Two
-
-### Characters Bio:
-
-![screenshot_characters.png](./src/images/screenshot_characters.png)
-
-- Created Characters Bio page and fetched data from API. (Alex)
-- Maniuplated data to show a different icon for Characters Status depending on result. (Alex)
-  - for example, if the Character's Status is "Alive", ✅ icon appears, however if he is "Dead" the icon ☠️ is showed.
-
-### Episodes List:
-
-![screenshot_episodes.png](./src/images/screenshot_episodes.png)
-
-- Created Episodes List Page. As we did not have images of each episodes, we decided
-  to show random images of characters who appeared in that specific episode, see code below (Alex/Joel)
+The next step was the home page. It was made from a few lines of HTML with ‘classnames’ to help with future SCSS stylings.
 
 ```javascript
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+const Home = () => (
+  <section className="hero is-fullheight-with-navbar is-success">
+    <div className="hero-body">
+      <div className="container">
+        <p className="title is-1 has-text-centered has-text-black"></p>
+      </div>
+    </div>
+  </section>
+);
 
-const randomCharacter =
-  characters[Math.ceil(Math.random() * characters.length)];
-
-useEffect(() => {
-  axios.get(randomCharacter).then((res) => {
-    console.log({ res });
-    setDisplayCharacter(res.data.image);
-  });
-}, []);
+export default Home;
 ```
 
-- Manipulated data to show the number of episodes each characters appeared on.(Alex)
-- Added syling to Navbar and Homepage. (Joel)
-- Added styling to Characters List and Bio. (Alex)
-- Deployed the project onto Netflify (Alex/Joel)
+The code snipits shows more code than I had at this stage because the image is of the final code.
 
-## Challenges
+When the information from the API was first coded to show on the page, we ran into a problem where only a fraction of the information was showing. We found out that the information from the API came with different pages. We both were looking for solutions and a tutor was able to help us by having a ‘useEffect’ function to display the information depending on what page we are currently in.
 
-- Using Git/GitHub for the first time as a tool to collaborate slowed us down at the start however with some practice, we speeded up the process and reduced the amount of merging conflicts considerably.
-- Using a CSS library for the first time also slowed down the styling of our app as we had
-  to read the documentation.
+```javascript
+import { getAllCharacters } from '../lib/api';
+import { useEffect, useState } from 'react';
+import CharactersCard from './CharactersCard';
 
-## Wins
+const CharactersList = () => {
+  const [characters, setCharacters] = useState(null);
+  const [page, setPage] = useState(1);
 
-- This was our first project involving back-end programming and fetching and API, the process was highly enjoyable and our communication really helped getting things done in time.
-- The use of CSS library made our styling simpler even though we lost valuable time in the process of reading the documentation.
+  useEffect(() => {
+    getAllCharacters(page)
+      .then((res) => setCharacters(res.data.results))
+      .catch((err) => console.error(err));
+  }, [page]);
 
-## Key Learning/Takeways
+  if (characters === null) {
+    return <p>Loading...</p>;
+  }
 
-- Pair-Programming
-- API fetching
-- Use of Bulma (CSS library) for the first time
+  const incrementPage = () => {
+    if (page >= 42) {
+      return (page = 42);
+    }
+    setPage(page + 1);
+  };
+  const decrementPage = () => {
+    if (page <= 1) {
+      return (page = 1);
+    }
+    setPage(page - 1);
+  };
+```
 
-## Bugs
+Alex then wrote code for the character bio, character cards, episodes list and episodes card. (In that order). We then made sure it all worked by testing the code on the local hosts pages.
 
-![screenshot_card_error.png](./src/images/screenshot_card_error.png)
+```javascript
+import { getAllEpisodes } from '../lib/api';
+import { useEffect, useState } from 'react';
+import EpisodesCard from './EpisodesCard';
 
-- In the Episodes List page above, when an image does not load, the image `alt` is showed, however, what should show is a generic image such as the example below for Characters Card.
+const EpisodesList = () => {
+  const [episodes, setEpisodes] = useState(null);
+  const [page, setPage] = useState(1);
 
-![screenshot_card.png](./src/images/screenshot_card.png)
+  useEffect(() => {
+    getAllEpisodes(page)
+      .then((res) => setEpisodes(res.data.results))
+      .catch((err) => console.error(err));
+  }, [page]);
 
-## Future Improvements
+  if (episodes === null) {
+    return <p>Loading...</p>;
+  }
 
-- Adding a condition in which second image is loaded onto a card if the fist image link is invalid.
-- Adding a search function to the Navbar
+  const incrementPage = () => {
+    if (page >= 3) {
+      return (page = 3);
+    }
+    setPage(page + 1);
+  };
+  const decrementPage = () => {
+    if (page <= 1) {
+      return (page = 1);
+    }
+    setPage(page - 1);
+  };
 
-## THANKS FOR READING!
+```
+
+The next step was to add styles.
+I focused on the home page and the arrows that allowed the pages to be changed. I decided to create an images folder to help with the styling but found it much easier to use links of existing images when styling the arrow buttons. The portal images behind the arrows are taken from Google images links.
+
+For the navbar there was no image available online that suited the look I was going for so I edited one I found online. I used an image editing software called GIMP and used that to crop the image to fit the navbar. While I styled the navbar and the page changing buttons Alex styled the home page, character bio, character cards, episodes list and episodes.
+
+We then started bug fixing. An example of a bug that was fixed is the page number going beyond the actual number of pages. This was fixed by using an ‘if’ statement.
+
+## Challenges:
+
+A challenge I faced was making the page changing function. During previous practice with APIs there was never a need to change pages but with the Rick and Morty API page changing was needed. I needed help from the internet and tutors to get it working.
+
+When merging work, we experienced many conflicts. Although we did communicate changes, we sometimes accidentally merged code that would conflict. It did take up a lot of time but did not hinder our ability to work as a team.
+
+## Win:
+
+A win was the fact I was able to find a solution to a problem I never encountered before. I am referring to the page changing feature. After I tried different routes without success, I asked for help.
+
+We would constantly help each other with coding problems and show respect when mistakes were made. By doing this both of us were motivated to work together and finish the project to the best of our ability.
+
+## Key learnings:
+
+Do not hesitate to ask for help when an issue you do not know how to overcome presents itself.
+The internet is a great resource to help you overcome many problems and learning how to properly search for specific issues can be a big help.
+
+Merge code on your own device before doing it on Github. This way if there are conflicts it can easily be fixed and not complicate things on Github.
+
+I need to be mindful of possible setbacks and give myself more time than I think I need in case of setbacks.
+
+## Bugs:
+
+- When the page number reaches double digits the arrows to switch pages move but not the portal image behind them.
+
+- If I had more time, I would try making the arrow and portal images be one whole image.
+
+- The arrow and portal images will look like they are moving at the same time.
+
+- If I had more time, I would make the arrow positions absolute so it would not move.
+
+## Future improvements:
+
+- Some future improvements I would like to make include adding a feature where you are not sent to page one when you are done looking at a character and go back to the index.
+
+- Another improvement would be the option to choose between the character list and episode list on the home page and not just the navbar. This will help the home page have more of a purpose
