@@ -101,7 +101,7 @@ const Home = () => (
 export default Home;
 ```
 
-The code snipits shows more code than I had at this stage because the image is of the final code.
+The code snippets shows more code than I had at this stage because the image is of the final code.
 
 When the information from the API was first coded to show on the page, we ran into a problem where only a fraction of the information was showing. We found out that the information from the API came with different pages. We both were looking for solutions and a tutor was able to help us by having a ‘useEffect’ function to display the information depending on what page we are currently in.
 
